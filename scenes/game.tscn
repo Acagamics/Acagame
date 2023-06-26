@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b51ha0wsiwdnk"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_gl2bo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p2b8v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mjj8o"]
+
+[node name="Game" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_gl2bo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.507937, 0, 0, 0, 0.507937, 0, 0, 0, 0.507937, 0, 0.501075, 0)
+mesh = SubResource("PlaneMesh_p2b8v")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0880234, 0, 0, 0, 0.346045, 0, 0, 0, 0.0795234, 0.374228, 0.327876, 0.370007)
+mesh = SubResource("BoxMesh_mjj8o")
