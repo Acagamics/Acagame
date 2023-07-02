@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b51ha0wsiwdnk"]
+[gd_scene load_steps=7 format=3 uid="uid://b51ha0wsiwdnk"]
 
 [ext_resource type="Script" path="res://code/CameraFollow.gd" id="1_vlvop"]
 [ext_resource type="PackedScene" uid="uid://c6clkgmt6mj40" path="res://scenes/player.tscn" id="1_yng7m"]
@@ -11,6 +11,11 @@ radius = 5.0
 radial_steps = 6
 sections = 4
 section_length = 0.5
+
+[sub_resource type="Environment" id="Environment_ktnj1"]
+background_mode = 2
+ambient_light_color = Color(0.282353, 0.352941, 0.407843, 1)
+tonemap_mode = 2
 
 [node name="Game" type="Node3D"]
 
@@ -75,3 +80,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20963, 0.999999, -16.6245)
 
 [node name="Hurtbox3" parent="." instance=ExtResource("3_un0dl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20963, 0.999999, -12.6245)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ktnj1")
