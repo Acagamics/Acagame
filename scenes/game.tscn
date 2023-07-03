@@ -1,23 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://b51ha0wsiwdnk"]
+[gd_scene load_steps=10 format=3 uid="uid://b51ha0wsiwdnk"]
 
 [ext_resource type="Script" path="res://code/CameraFollow.gd" id="1_vlvop"]
 [ext_resource type="PackedScene" uid="uid://c6clkgmt6mj40" path="res://scenes/player.tscn" id="1_yng7m"]
 [ext_resource type="PackedScene" uid="uid://b76s2ejf37q5n" path="res://scenes/hurtbox.tscn" id="3_un0dl"]
+[ext_resource type="PackedScene" uid="uid://kr3ogpa8tbns" path="res://scenes/hexagon.tscn" id="3_yb1jf"]
 [ext_resource type="PackedScene" uid="uid://dsbdqf2nvyuch" path="res://scenes/switch.tscn" id="4_qip34"]
 [ext_resource type="PackedScene" uid="uid://2syfxc5y7iaw" path="res://scenes/door.tscn" id="5_gedo6"]
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_swsi7"]
-
-[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_2jr6u"]
-radius = 5.0
-radial_steps = 6
-sections = 4
-section_length = 0.5
+[ext_resource type="Script" path="res://code/hurtbox.gd" id="7_hku6y"]
 
 [sub_resource type="Environment" id="Environment_ktnj1"]
 background_mode = 2
 ambient_light_color = Color(0.282353, 0.352941, 0.407843, 1)
 tonemap_mode = 2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_mnlg0"]
 
 [node name="Game" type="Node3D"]
 
@@ -32,47 +28,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
 
-[node name="Ground" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("WorldBoundaryShape3D_swsi7")
-
 [node name="World" type="Node" parent="."]
 
-[node name="Hexagon" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = SubResource("TubeTrailMesh_2jr6u")
-skeleton = NodePath("../..")
+[node name="Hexagon" parent="World" instance=ExtResource("3_yb1jf")]
 
-[node name="Hexagon2" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.60783, -1, -7.80696)
-mesh = SubResource("TubeTrailMesh_2jr6u")
-skeleton = NodePath("../..")
+[node name="Hexagon2" parent="World" instance=ExtResource("3_yb1jf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.31156, -1, -7.75663)
 
-[node name="Hexagon3" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.637, -1, -7.77425)
-mesh = SubResource("TubeTrailMesh_2jr6u")
-skeleton = NodePath("../..")
+[node name="Hexagon3" parent="World" instance=ExtResource("3_yb1jf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0947285, -1, -15.501)
 
-[node name="Hexagon4" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0862, -1, -0.0536304)
-mesh = SubResource("TubeTrailMesh_2jr6u")
-skeleton = NodePath("../..")
+[node name="Hexagon4" parent="World" instance=ExtResource("3_yb1jf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1241, -1, -7.75664)
 
-[node name="Hexagon5" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.05, -1, -0.0536304)
-mesh = SubResource("TubeTrailMesh_2jr6u")
-skeleton = NodePath("../..")
+[node name="Hexagon5" parent="World" instance=ExtResource("3_yb1jf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5304, -1, -0.145779)
 
-[node name="Hexagon6" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.6954, -1, -7.74153)
-mesh = SubResource("TubeTrailMesh_2jr6u")
-skeleton = NodePath("../..")
+[node name="Hexagon6" parent="World" instance=ExtResource("3_yb1jf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.254, -1, 0.0322537)
 
-[node name="Hexagon7" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0932293, -1, -15.4949)
-mesh = SubResource("TubeTrailMesh_2jr6u")
-skeleton = NodePath("../..")
+[node name="Hexagon7" parent="World" instance=ExtResource("3_yb1jf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7047, -1, -7.71212)
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_un0dl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.79037, 0.999999, -14.6245)
@@ -91,5 +67,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.5, 4)
 
 [node name="Door" parent="." instance=ExtResource("5_gedo6")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22, 0, 0)
+
+[node name="DeathTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.04737, 0)
+script = ExtResource("7_hku6y")
+damage_amount = 999999999999
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathTrigger"]
+shape = SubResource("WorldBoundaryShape3D_mnlg0")
 
 [connection signal="activate" from="Switch" to="Door" method="toggle"]
