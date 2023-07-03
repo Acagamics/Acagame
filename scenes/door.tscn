@@ -32,6 +32,7 @@ _data = {
 }
 
 [node name="Door" type="Node3D"]
+editor_description = "Das ist ein Tür"
 script = ExtResource("1_t7c6s")
 
 [node name="Blockage" type="RigidBody3D" parent="."]
