@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bxkww14xjpfa6"]
+
+[node name="DebugLabel" type="Label3D"]
+transform = Transform3D(1, 0, 0, 0, 0.724858, 0.688899, 0, -0.688899, 0.724858, 0, 0, 0)
+billboard = 1
+no_depth_test = true
+text = "Player"
+font_size = 64
+outline_size = 32

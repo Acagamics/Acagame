@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b76s2ejf37q5n"]
+[gd_scene load_steps=6 format=3 uid="uid://b76s2ejf37q5n"]
 
 [ext_resource type="Script" path="res://code/hurtbox.gd" id="1_dtgdv"]
+[ext_resource type="PackedScene" uid="uid://bxkww14xjpfa6" path="res://scenes/debug_label.tscn" id="2_ou7v5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pi1ob"]
 
@@ -18,3 +19,6 @@ shape = SubResource("SphereShape3D_pi1ob")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_pkjtr")
 mesh = SubResource("SphereMesh_ri1f4")
+
+[node name="DebugLabel" parent="." instance=ExtResource("2_ou7v5")]
+text = "Hurtbox"

@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsbdqf2nvyuch"]
+
+[ext_resource type="Script" path="res://code/switch.gd" id="1_5j5vg"]
+[ext_resource type="PackedScene" uid="uid://bxkww14xjpfa6" path="res://scenes/debug_label.tscn" id="1_silsh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k27tm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md8eo"]
+albedo_color = Color(0, 0.568627, 0.694118, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ys3s1"]
+
+[node name="Switch" type="Area3D"]
+script = ExtResource("1_5j5vg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_k27tm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_md8eo")
+mesh = SubResource("BoxMesh_ys3s1")
+
+[node name="DebugLabel" parent="." instance=ExtResource("1_silsh")]
+text = "Switch"

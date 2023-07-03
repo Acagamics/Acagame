@@ -1,14 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6clkgmt6mj40"]
+[gd_scene load_steps=8 format=3 uid="uid://c6clkgmt6mj40"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_mp6gu"]
 [ext_resource type="Script" path="res://code/Hitbox.gd" id="2_i6eom"]
+[ext_resource type="PackedScene" uid="uid://bxkww14xjpfa6" path="res://scenes/debug_label.tscn" id="2_mrx3p"]
 [ext_resource type="Script" path="res://code/Hp.gd" id="2_t6o4p"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a6ck7"]
+height = 1.8
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1rvxm"]
+height = 1.8
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rvqs5"]
+radius = 0.6
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_mp6gu")
@@ -16,6 +20,8 @@ max_speed = 6
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_a6ck7")
+
+[node name="DebugLabel" parent="MeshInstance3D" instance=ExtResource("2_mrx3p")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1rvxm")

@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://2syfxc5y7iaw"]
+
+[ext_resource type="Script" path="res://code/door.gd" id="1_t7c6s"]
+[ext_resource type="PackedScene" uid="uid://bxkww14xjpfa6" path="res://scenes/debug_label.tscn" id="2_ovscp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ppchb"]
+albedo_color = Color(0.686275, 0.00392157, 0.992157, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vo6f6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h0jn8"]
+size = Vector3(3.1, 2, 0.7)
+
+[sub_resource type="BoxMesh" id="BoxMesh_22rou"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wiqey"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="Animation" id="Animation_4m0bu"]
+resource_name = "open"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blockage")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0, 1, 1, 0, 3, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ar1g8"]
+_data = {
+"open": SubResource("Animation_4m0bu")
+}
+
+[node name="Door" type="Node3D"]
+script = ExtResource("1_t7c6s")
+
+[node name="Blockage" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+freeze = true
+freeze_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Blockage"]
+transform = Transform3D(3.1, 0, 0, 0, 2, 0, 0, 0, 0.7, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ppchb")
+mesh = SubResource("BoxMesh_vo6f6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blockage"]
+shape = SubResource("BoxShape3D_h0jn8")
+
+[node name="DebugLabel" parent="Blockage" instance=ExtResource("2_ovscp")]
+text = "Door"
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -2, 1, 0)
+mesh = SubResource("BoxMesh_22rou")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Visuals/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wiqey")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 2, 1, 0)
+mesh = SubResource("BoxMesh_22rou")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Visuals/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wiqey")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_22rou")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Visuals/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Visuals/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wiqey")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ar1g8")
+}

@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b51ha0wsiwdnk"]
+[gd_scene load_steps=9 format=3 uid="uid://b51ha0wsiwdnk"]
 
 [ext_resource type="Script" path="res://code/CameraFollow.gd" id="1_vlvop"]
 [ext_resource type="PackedScene" uid="uid://c6clkgmt6mj40" path="res://scenes/player.tscn" id="1_yng7m"]
 [ext_resource type="PackedScene" uid="uid://b76s2ejf37q5n" path="res://scenes/hurtbox.tscn" id="3_un0dl"]
+[ext_resource type="PackedScene" uid="uid://dsbdqf2nvyuch" path="res://scenes/switch.tscn" id="4_qip34"]
+[ext_resource type="PackedScene" uid="uid://2syfxc5y7iaw" path="res://scenes/door.tscn" id="5_gedo6"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_swsi7"]
 
@@ -83,3 +85,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20963, 0.999999, -12.6245)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ktnj1")
+
+[node name="Switch" parent="." instance=ExtResource("4_qip34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.5, 4)
+
+[node name="Door" parent="." instance=ExtResource("5_gedo6")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22, 0, 0)
+
+[connection signal="activate" from="Switch" to="Door" method="open"]
