@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<title>$GODOT_PROJECT_NAME</title>
+		<title>Acagame</title>
 		<style>
 body {
 	touch-action: none;
@@ -109,7 +109,9 @@ body {
 	visibility: visible;
 }
 		</style>
-		$GODOT_HEAD_INCLUDE
+		<link id='-gd-engine-icon' rel='icon' type='image/png' href='acagame.icon.png' />
+<link rel='apple-touch-icon' href='acagame.apple-touch-icon.png'/>
+
 	</head>
 	<body>
 		<canvas id="canvas">
@@ -133,9 +135,9 @@ body {
 			<div id="status-notice" class="godot" style="display: none;"></div>
 		</div>
 
-		<script src="$GODOT_URL"></script>
+		<script src="acagame.js"></script>
 		<script>
-const GODOT_CONFIG = $GODOT_CONFIG;
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"acagame","experimentalVK":false,"fileSizes":{"acagame.pck":37408,"acagame.wasm":49023618},"focusCanvas":true,"gdextensionLibs":[]};
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
@@ -243,3 +245,4 @@ const engine = new Engine(GODOT_CONFIG);
 		</script>
 	</body>
 </html>
+
