@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b51ha0wsiwdnk"]
+[gd_scene load_steps=12 format=3 uid="uid://b51ha0wsiwdnk"]
 
 [ext_resource type="Script" path="res://code/CameraFollow.gd" id="1_vlvop"]
 [ext_resource type="PackedScene" uid="uid://c6clkgmt6mj40" path="res://scenes/player.tscn" id="1_yng7m"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dsbdqf2nvyuch" path="res://scenes/switch.tscn" id="4_qip34"]
 [ext_resource type="PackedScene" uid="uid://2syfxc5y7iaw" path="res://scenes/door.tscn" id="5_gedo6"]
 [ext_resource type="Script" path="res://code/hurtbox.gd" id="7_hku6y"]
+[ext_resource type="Script" path="res://code/HeartDisplay.gd" id="8_7ok87"]
+[ext_resource type="Texture2D" uid="uid://cp47nfegye1qs" path="res://tex/suit_hearts.png" id="9_7vmu5"]
 
 [sub_resource type="Environment" id="Environment_ktnj1"]
 background_mode = 2
@@ -26,11 +28,12 @@ target = NodePath("../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.337818, 0.941211, 0, -0.941211, 0.337818, -6.28612, 0.125248, 0.0914339)
 
 [node name="World" type="Node" parent="."]
 
 [node name="Hexagon" parent="World" instance=ExtResource("3_yb1jf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.153038, -1, -0.0133891)
 
 [node name="Hexagon2" parent="World" instance=ExtResource("3_yb1jf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.31156, -1, -7.75663)
@@ -75,5 +78,29 @@ damage_amount = 999999999999
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathTrigger"]
 shape = SubResource("WorldBoundaryShape3D_mnlg0")
+
+[node name="HeathDisplay" type="HFlowContainer" parent="." node_paths=PackedStringArray("player")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 128.0
+grow_horizontal = 2
+alignment = 1
+script = ExtResource("8_7ok87")
+player = NodePath("../Player")
+
+[node name="1" type="TextureRect" parent="HeathDisplay"]
+modulate = Color(1, 0.2, 0.411765, 1)
+layout_mode = 2
+texture = ExtResource("9_7vmu5")
+
+[node name="2" type="TextureRect" parent="HeathDisplay"]
+modulate = Color(1, 0.2, 0.411765, 1)
+layout_mode = 2
+texture = ExtResource("9_7vmu5")
+
+[node name="3" type="TextureRect" parent="HeathDisplay"]
+modulate = Color(1, 0.2, 0.411765, 1)
+layout_mode = 2
+texture = ExtResource("9_7vmu5")
 
 [connection signal="activate" from="Switch" to="Door" method="toggle"]

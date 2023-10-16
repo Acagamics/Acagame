@@ -1,7 +1,9 @@
 extends CharacterBody3D
+class_name Player
 
 @export var max_speed = 5
 @export var acceleration = 60
+@export var hp : Hp
 
 func _physics_process(delta: float) -> void:
 	var move = get_move()

@@ -14,9 +14,10 @@ height = 1.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rvqs5"]
 radius = 0.6
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("hp")]
 script = ExtResource("1_mp6gu")
 max_speed = 6
+hp = NodePath("Hp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_a6ck7")
