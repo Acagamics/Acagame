@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+      - name: create out directory
+        run: mkdir out
 
       - name: export game
         uses: firebelley/godot-export@v5.2.1
