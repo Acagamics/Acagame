@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b51ha0wsiwdnk"]
+[gd_scene load_steps=14 format=3 uid="uid://b51ha0wsiwdnk"]
 
 [ext_resource type="Script" path="res://code/CameraFollow.gd" id="1_vlvop"]
 [ext_resource type="PackedScene" uid="uid://c6clkgmt6mj40" path="res://scenes/player.tscn" id="1_yng7m"]
@@ -10,8 +10,14 @@
 [ext_resource type="Script" path="res://code/HeartDisplay.gd" id="8_7ok87"]
 [ext_resource type="Texture2D" uid="uid://cp47nfegye1qs" path="res://tex/suit_hearts.png" id="9_7vmu5"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8g0j4"]
+
+[sub_resource type="Sky" id="Sky_7vv3c"]
+sky_material = SubResource("ProceduralSkyMaterial_8g0j4")
+
 [sub_resource type="Environment" id="Environment_ktnj1"]
 background_mode = 2
+sky = SubResource("Sky_7vv3c")
 ambient_light_color = Color(0.282353, 0.352941, 0.407843, 1)
 tonemap_mode = 2
 
@@ -26,9 +32,11 @@ target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_yng7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+floor_constant_speed = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.337818, 0.941211, 0, -0.941211, 0.337818, -6.28612, 0.125248, 0.0914339)
+shadow_enabled = true
 
 [node name="World" type="Node" parent="."]
 

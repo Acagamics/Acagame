@@ -16,7 +16,6 @@ func _physics_process(delta: float) -> void:
 	velocity.z = planar_velocity.y
 	velocity.y -= delta * 50
 	
-	
 	move_and_slide()
 
 
