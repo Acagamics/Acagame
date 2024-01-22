@@ -1,65 +1,33 @@
-# This is a basic workflow to help you get started with Actions
+name: deploy on itch
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  build_and_deploy:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
       - name: export game
-        # Use latest version (see releases for all versions)
         uses: firebelley/godot-export@v5.2.1
         with:
-          # Defining all the required inputs
           godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.2.1/Godot_v4.2.1-stable_linux.x86_64.zip
           godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.2.1/Godot_v4.2.1-stable_export_templates.tpz
           relative_project_path: ./
-      
-      - name: Zip-Release4cpp
-        uses: darshitsri/zip-release@v3
-        with:
-          # Filename for archive
-          filename: web.zip
-          # Base path for archive files
-          path: .
-          # Working directory before zipping
-          directory: ./docs
-          # List of excluded files / directories
-          exclusions: # optional, default is 
-          # List of excluded files / directories with recursive wildcards (only applies on Windows with `zip` type)
-          recursive_exclusions: # optional, default is 
-          # Provide any custom parameters to the command
-          custom: # optional, default is 
-          # Tool to use for archiving
-          type: # optional, default is zip
-              
 
-      - name: Itch.io Upload
-        # You may pin to the exact commit or the version.
-        # uses: robpc/itchio-upload-action@c7a5c9ab90447fa38cdc6ba6fd0d52d9801c5417
+      - name: zip game
+        uses: TheDoctor0/zip-release@0.7.6
+        with:
+          filename: ./docs/web.zip
+          path: ./docs/
+
+      - name: upload game to Itch.io
         uses: robpc/itchio-upload-action@v1.0
         with:
-          # path to upload
-          path: ./docs/
-          # name of the itchio project
+          path: ./docs/web.zip
           project: acagame
-          # name of the upload channel
           channel: web
           api-key: ${{secrets.ITCH_API_KEY}}
