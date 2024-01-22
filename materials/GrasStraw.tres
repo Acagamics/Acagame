@@ -1,7 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://cd2ip6sr5geoj"]
 
 [resource]
-transparency = 1
 cull_mode = 2
 diffuse_mode = 3
 vertex_color_use_as_albedo = true

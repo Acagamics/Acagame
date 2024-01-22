@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b51ha0wsiwdnk"]
+[gd_scene load_steps=24 format=3 uid="uid://b51ha0wsiwdnk"]
 
 [ext_resource type="Script" path="res://code/CameraFollow.gd" id="1_vlvop"]
 [ext_resource type="PackedScene" uid="uid://c6clkgmt6mj40" path="res://scenes/player.tscn" id="1_yng7m"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://code/hurtbox.gd" id="7_hku6y"]
 [ext_resource type="Script" path="res://code/HeartDisplay.gd" id="8_7ok87"]
 [ext_resource type="Texture2D" uid="uid://cp47nfegye1qs" path="res://tex/suit_hearts.png" id="9_7vmu5"]
+[ext_resource type="Shader" path="res://code/water.gdshader" id="10_t4h3o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8g0j4"]
 
@@ -22,6 +23,67 @@ ambient_light_color = Color(0.282353, 0.352941, 0.407843, 1)
 tonemap_mode = 2
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_mnlg0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l5ckx"]
+size = Vector2(100, 100)
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p3bt5"]
+noise_type = 0
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tnk0d"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_p3bt5")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_palxl"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7lpcg"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_palxl")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qn054"]
+noise_type = 0
+frequency = 0.0022
+fractal_type = 2
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qildd"]
+seamless = true
+noise = SubResource("FastNoiseLite_qn054")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6gwv"]
+render_priority = 0
+shader = ExtResource("10_t4h3o")
+shader_parameter/albedo = Color(0, 0.321569, 0.431373, 1)
+shader_parameter/albedo_fresnel = Color(0.0509804, 0.54902, 0.529412, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.01
+shader_parameter/noise_scale = 0.01
+shader_parameter/height_scale = 3.395
+shader_parameter/color_deep = Color(0, 0.196078, 0.270588, 1)
+shader_parameter/color_shallow = Color(0, 0.388235, 0.513726, 1)
+shader_parameter/beers_law = 0.265
+shader_parameter/depth_offset = 8.045
+shader_parameter/edge_scale = 1.425
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(1, 1, 1, 1)
+shader_parameter/wave = SubResource("NoiseTexture2D_qildd")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_tnk0d")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_7lpcg")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g6dpk"]
+size = Vector2(1000, 1000)
 
 [node name="Game" type="Node3D"]
 
@@ -110,5 +172,17 @@ texture = ExtResource("9_7vmu5")
 modulate = Color(1, 0.2, 0.411765, 1)
 layout_mode = 2
 texture = ExtResource("9_7vmu5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_l5ckx")
+surface_material_override/0 = SubResource("ShaderMaterial_i6gwv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.1, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_g6dpk")
+surface_material_override/0 = SubResource("ShaderMaterial_i6gwv")
 
 [connection signal="activate" from="Switch" to="Door" method="toggle"]
