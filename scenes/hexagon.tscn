@@ -82,3 +82,8 @@ visible = false
 material_override = SubResource("ShaderMaterial_h646y")
 mesh = SubResource("ArrayMesh_3jj5g")
 skeleton = NodePath("")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0443811, 3.38648, -0.00446701)
+max_distance = 10.0
+size = Vector3(10, 5, 10)
