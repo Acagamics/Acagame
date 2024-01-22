@@ -21,13 +21,14 @@ jobs:
       - name: zip game
         uses: TheDoctor0/zip-release@0.7.6
         with:
-          filename: ./docs/web.zip
-          path: ./docs/
+          filename: web.zip
+          path: .
+          directory: ./docs/
 
       - name: upload game to Itch.io
         uses: robpc/itchio-upload-action@v1.0
         with:
           path: ./docs/web.zip
-          project: acagame
+          project: acagamics/acagame
           channel: web
           api-key: ${{secrets.ITCH_API_KEY}}
