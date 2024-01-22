@@ -12,8 +12,12 @@ config_version=5
 
 config/name="Acagame"
 run/main_scene="res://scenes/game.tscn"
-config/features=PackedStringArray("4.0", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [input]
 
@@ -44,6 +48,7 @@ attack={
 ]
 }
 
-[rendering]
+[physics]
 
-renderer/rendering_method="gl_compatibility"
+common/physics_ticks_per_second=240
+3d/default_gravity=20.0

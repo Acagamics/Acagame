@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cpmkrv0kabdor"]
+
+[resource]
+vertex_color_use_as_albedo = true
+metallic_specular = 0.0
+roughness = 0.0
+emission = Color(0.160784, 0, 0.254902, 1)
+backlight_enabled = true
+backlight = Color(0.164706, 0.164706, 0.164706, 1)
