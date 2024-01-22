@@ -1,5 +1,10 @@
 Acagame ist ein Spiel an dem wir als Verein gemeinsam arbeiten wollen.
 
-Hier kannst du einen Preview Spielen:
-https://janekx21.itch.io/acagame
-GodotVersion: 4.0.2.stable
+Was kann das Projekt bis jetzt:
+- Player mit Leben und Hitbox
+- Tür und Schalter
+- Wasser Shader
+- Einfache Modelle
+- Automatischer upload auf Itch.io
+
+GodotVersion: 4.2.1.stable
