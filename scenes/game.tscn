@@ -29,30 +29,28 @@ size = Vector2(100, 100)
 subdivide_width = 100
 subdivide_depth = 100
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_p3bt5"]
-noise_type = 0
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qn054"]
+frequency = 0.0113
 fractal_type = 2
+fractal_octaves = 4
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tnk0d"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ci3yc"]
 seamless = true
 as_normal_map = true
-bump_strength = 1.5
-noise = SubResource("FastNoiseLite_p3bt5")
+bump_strength = 5.5
+noise = SubResource("FastNoiseLite_qn054")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_palxl"]
+frequency = 0.0184
 fractal_type = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7lpcg"]
+width = 2048
+height = 2048
 seamless = true
 as_normal_map = true
 bump_strength = 1.5
 noise = SubResource("FastNoiseLite_palxl")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_qn054"]
-noise_type = 0
-frequency = 0.0022
-fractal_type = 2
-fractal_octaves = 4
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qildd"]
 seamless = true
@@ -61,29 +59,55 @@ noise = SubResource("FastNoiseLite_qn054")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i6gwv"]
 render_priority = 0
 shader = ExtResource("10_t4h3o")
+shader_parameter/albedo_high = Color(0, 0.584314, 0.772549, 1)
 shader_parameter/albedo = Color(0, 0.321569, 0.431373, 1)
-shader_parameter/albedo_fresnel = Color(0.0509804, 0.54902, 0.529412, 1)
-shader_parameter/metallic = 0.0
+shader_parameter/albedo_fresnel = Color(0, 0.533333, 0.701961, 1)
+shader_parameter/metallic = 0.537
 shader_parameter/roughness = 0.02
-shader_parameter/wave_direction = Vector2(2, 0)
-shader_parameter/wave_direction2 = Vector2(0, 1)
-shader_parameter/time_scale = 0.01
-shader_parameter/noise_scale = 0.01
-shader_parameter/height_scale = 3.395
-shader_parameter/color_deep = Color(0, 0.196078, 0.270588, 1)
-shader_parameter/color_shallow = Color(0, 0.388235, 0.513726, 1)
-shader_parameter/beers_law = 0.265
+shader_parameter/wave_direction = Vector2(0.795, 0)
+shader_parameter/wave_direction2 = Vector2(0, 0.585)
+shader_parameter/time_scale = 0.015
+shader_parameter/noise_scale = 0.005
+shader_parameter/height_scale = 3.375
+shader_parameter/color_deep = Color(0, 0.32549, 0.439216, 1)
+shader_parameter/color_shallow = Color(0, 0.721569, 0.941176, 1)
+shader_parameter/beers_law = 0.3
 shader_parameter/depth_offset = 8.045
-shader_parameter/edge_scale = 1.425
-shader_parameter/near = 1.0
-shader_parameter/far = 100.0
-shader_parameter/edge_color = Color(1, 1, 1, 1)
+shader_parameter/edge_scale = 2.015
+shader_parameter/near = 0.34
+shader_parameter/far = 2000.0
+shader_parameter/edge_color = Color(0.858824, 1, 0.992157, 1)
 shader_parameter/wave = SubResource("NoiseTexture2D_qildd")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_tnk0d")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ci3yc")
 shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_7lpcg")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g6dpk"]
-size = Vector2(1000, 1000)
+size = Vector2(10000, 10000)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8u2vp"]
+render_priority = 0
+shader = ExtResource("10_t4h3o")
+shader_parameter/albedo_high = Color(0, 0.584314, 0.772549, 1)
+shader_parameter/albedo = Color(0, 0.321569, 0.431373, 1)
+shader_parameter/albedo_fresnel = Color(0, 0.533333, 0.701961, 1)
+shader_parameter/metallic = 0.537
+shader_parameter/roughness = 0.02
+shader_parameter/wave_direction = Vector2(0.795, 0)
+shader_parameter/wave_direction2 = Vector2(0, 0.585)
+shader_parameter/time_scale = 0.015
+shader_parameter/noise_scale = 0.005
+shader_parameter/height_scale = 0.0
+shader_parameter/color_deep = Color(0, 0.32549, 0.439216, 1)
+shader_parameter/color_shallow = Color(0, 0.721569, 0.941176, 1)
+shader_parameter/beers_law = 0.3
+shader_parameter/depth_offset = 8.045
+shader_parameter/edge_scale = 2.015
+shader_parameter/near = 0.34
+shader_parameter/far = 2000.0
+shader_parameter/edge_color = Color(0.858824, 1, 0.992157, 1)
+shader_parameter/wave = SubResource("NoiseTexture2D_qildd")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_ci3yc")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_7lpcg")
 
 [node name="Game" type="Node3D"]
 
@@ -97,7 +121,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 floor_constant_speed = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.816934, -0.100148, 0.56797, -0.542827, 0.199167, 0.815887, -0.19483, -0.974835, 0.108343, -6.28612, 0.125248, 0.0914339)
+transform = Transform3D(0.219946, -0.903855, 0.366975, -0.542827, 0.199167, 0.815887, -0.810533, -0.378654, -0.446831, -6.28612, 0.125248, 0.0914339)
 shadow_enabled = true
 
 [node name="World" type="Node" parent="."]
@@ -173,16 +197,20 @@ modulate = Color(1, 0.2, 0.411765, 1)
 layout_mode = 2
 texture = ExtResource("9_7vmu5")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+[node name="Water" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Water"]
+transform = Transform3D(0.786268, 0, 0, 0, 0.786268, 0, 0, 0, 0.786268, 0, -5, 0)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_l5ckx")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_i6gwv")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.1, 0)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.38094, 0)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_g6dpk")
-surface_material_override/0 = SubResource("ShaderMaterial_i6gwv")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_8u2vp")
 
 [connection signal="activate" from="Switch" to="Door" method="toggle"]
