@@ -35,7 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 floor_constant_speed = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.337818, 0.941211, 0, -0.941211, 0.337818, -6.28612, 0.125248, 0.0914339)
+transform = Transform3D(0.816934, -0.100148, 0.56797, -0.542827, 0.199167, 0.815887, -0.19483, -0.974835, 0.108343, -6.28612, 0.125248, 0.0914339)
 shadow_enabled = true
 
 [node name="World" type="Node" parent="."]
