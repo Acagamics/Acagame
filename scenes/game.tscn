@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b51ha0wsiwdnk"]
+[gd_scene load_steps=25 format=3 uid="uid://b51ha0wsiwdnk"]
 
 [ext_resource type="Script" path="res://code/CameraFollow.gd" id="1_vlvop"]
 [ext_resource type="PackedScene" uid="uid://c6clkgmt6mj40" path="res://scenes/player.tscn" id="1_yng7m"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://code/HeartDisplay.gd" id="8_7ok87"]
 [ext_resource type="Texture2D" uid="uid://cp47nfegye1qs" path="res://tex/suit_hearts.png" id="9_7vmu5"]
 [ext_resource type="Shader" path="res://code/water.gdshader" id="10_t4h3o"]
+[ext_resource type="PackedScene" uid="uid://cgxd15b8xoc1x" path="res://scenes/coin.tscn" id="11_e27if"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8g0j4"]
 sky_horizon_color = Color(0.611765, 0.662745, 0.705882, 1)
@@ -215,5 +216,8 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_g6dpk")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_8u2vp")
+
+[node name="Coin" parent="." instance=ExtResource("11_e27if")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.3167, -6.4551)
 
 [connection signal="activate" from="Switch" to="Door" method="toggle"]

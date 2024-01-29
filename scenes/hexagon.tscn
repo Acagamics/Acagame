@@ -20,3 +20,4 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0443811, 3.38648, -0.00446701)
 max_distance = 10.0
 size = Vector3(10, 5, 10)
+box_projection = true
