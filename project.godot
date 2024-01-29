@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 enabled=PackedStringArray()
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_left={

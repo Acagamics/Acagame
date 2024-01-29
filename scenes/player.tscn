@@ -1,13 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6clkgmt6mj40"]
+[gd_scene load_steps=8 format=3 uid="uid://c6clkgmt6mj40"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_mp6gu"]
 [ext_resource type="Script" path="res://code/Hitbox.gd" id="2_i6eom"]
 [ext_resource type="PackedScene" uid="uid://bxkww14xjpfa6" path="res://scenes/debug_label.tscn" id="2_mrx3p"]
 [ext_resource type="Script" path="res://code/Hp.gd" id="2_t6o4p"]
 [ext_resource type="PackedScene" uid="uid://dsk5notetr5gh" path="res://models/player.glb" id="5_4xekk"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_a6ck7"]
-height = 1.8
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1rvxm"]
 height = 1.8
@@ -19,12 +16,6 @@ radius = 0.6
 script = ExtResource("1_mp6gu")
 max_speed = 6
 hp = NodePath("Hp")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("CapsuleMesh_a6ck7")
-
-[node name="DebugLabel" parent="MeshInstance3D" instance=ExtResource("2_mrx3p")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1rvxm")
@@ -41,5 +32,7 @@ script = ExtResource("2_t6o4p")
 
 [node name="player" parent="." instance=ExtResource("5_4xekk")]
 transform = Transform3D(0.363647, 0, 0, 0, 0.363647, 0, 0, 0, 0.363647, 0, -0.967437, 0)
+
+[node name="DebugLabel" parent="." instance=ExtResource("2_mrx3p")]
 
 [connection signal="death" from="Hp" to="." method="_on_hp_death"]
